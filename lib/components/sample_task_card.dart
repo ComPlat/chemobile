@@ -22,9 +22,10 @@ class _SampleTaskCardState extends State<SampleTaskCard> {
         children: [
           buildSvgImage(),
           ListTile(
+            isThreeLine: true,
             trailing: widget.onTap != null ? const Icon(Icons.chevron_right, size: 36) : null,
             title: Text(widget.sampleTask.title(), textAlign: TextAlign.left, maxLines: 1),
-            subtitle: Text(remainingScansText(), textAlign: TextAlign.left, textScaleFactor: 0.8),
+            subtitle: Text(subtitle(), textAlign: TextAlign.left, textScaleFactor: 0.8),
             onTap: widget.onTap,
           ),
         ],
@@ -47,6 +48,26 @@ class _SampleTaskCardState extends State<SampleTaskCard> {
     } else {
       return Container();
     }
+  }
+
+  String subtitle() {
+    String remainingScans = remainingScansText();
+    String targetAmount = targetAmountText();
+
+    if (targetAmount == '') return remainingScans;
+
+    return [targetAmount, "\n", remainingScans].join("");
+  }
+
+  String targetAmountText() {
+    if (widget.sampleTask.targetAmountValue == null) return "";
+    if (widget.sampleTask.targetAmountUnit == null) return "";
+
+    return [
+      "Target amount: ",
+      widget.sampleTask.targetAmountValue.toString(),
+      widget.sampleTask.targetAmountUnit!
+    ].join("");
   }
 
   String remainingScansText() {
