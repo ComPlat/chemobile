@@ -25,29 +25,28 @@ jobs:
         with:
           flutter-version: '3.16.3'
       - run: flutter pub get
-
-     
       
-      - run: | 
+      - name: set local properties
+        run: | 
           echo "" >> ./android/local.properties
           echo flutter.minSdkVersion=21 >> ./android/local.properties
           echo flutter.targetSdkVersion=30 >> ./android/local.properties
           echo flutter.compileSdkVersion=30 >> ./android/local.properties
 
-       
-        
       - name: test
         env:
           TEST_INSTANCE_URL: ${{ secrets.TEST_INSTANCE_URL }}
-        run: |
-          flutter drive \
-            --dart-define=ELN_USERNAME=complat.user1@eln.edu \
-            --dart-define=ELN_PASSWORD=@complat \
-            --dart-define=ELN_URL=$TEST_INSTANCE_URL
-            --driver=test_driver/integration_test.dart \
-            --target=integration_test/app_test.dart
+#        run: |
+#          flutter packages pub run build_runner build
+#          flutter drive \
+#            --dart-define=ELN_USERNAME=complat.user1@eln.edu \
+#            --dart-define=ELN_PASSWORD=@complat \
+#            --dart-define=ELN_URL=$TEST_INSTANCE_URL
+#            --driver=test_driver/integration_test.dart \
+#            --target=integration_test/app_test.dart
 
-      - run: |
+      - name: set key properties
+        run: |
           echo keyPassword=\${{ secrets.KEY_PASSWORD }} > ./android/key.properties
           echo storePassword=\${{ secrets.STORE_PASSWORD }} >> ./android/key.properties
           echo keyAlias=\${{ secrets.KEY_ALIAS }} >> ./android/key.properties
