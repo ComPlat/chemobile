@@ -38,8 +38,8 @@ jobs:
       # - run: flutter build apk
       - run: flutter build appbundle
       
-#      - name: Upload artefact
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: appbundle
-#          path: build/app/outputs/bundle/
+      - name: Upload artefact
+        uses: actions/upload-artifact@v3
+        with:
+          name: appbundle
+          path: build/app/outputs/bundle/release/app-release.aab 
