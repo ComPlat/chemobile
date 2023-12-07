@@ -36,7 +36,8 @@ jobs:
       - name: test
         env:
           TEST_INSTANCE_URL: ${{ secrets.TEST_INSTANCE_URL }}
-#        run: |
+        run: |
+          echo "no testing" 
 #          flutter packages pub run build_runner build
 #          flutter drive \
 #            --dart-define=ELN_USERNAME=complat.user1@eln.edu \
