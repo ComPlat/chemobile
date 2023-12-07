@@ -31,6 +31,8 @@ jobs:
           echo flutter.minSdkVersion=21 > /home/runner/work/chemobile/chemobile/android/local.properties
           echo flutter.targetSdkVersion=30 > /home/runner/work/chemobile/chemobile/android/local.properties
           echo flutter.compileSdkVersion=30 > /home/runner/work/chemobile/chemobile/android/local.properties
+          cat /home/runner/work/chemobile/chemobile/android/local.properties
+          pwd
       
       # - run: flutter build apk
-      - run: flutter build appbundle
+      - run: flutter build appbundle --debug
