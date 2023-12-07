@@ -28,9 +28,9 @@ jobs:
       # - run: flutter test test_driver/integration_test.dart
       
       - run: | 
-          echo flutter.minSdkVersion=21 > ./local.properties
-          echo flutter.targetSdkVersion=30 > ./local.properties
-          echo flutter.compileSdkVersion=30 > ./local.properties
+          echo flutter.minSdkVersion=21 > ./android/local.properties
+          echo flutter.targetSdkVersion=30 > ./android/local.properties
+          echo flutter.compileSdkVersion=30 > ./android/local.properties
       
       # - run: flutter build apk
       - run: flutter build appbundle
