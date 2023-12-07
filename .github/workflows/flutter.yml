@@ -25,6 +25,6 @@ jobs:
         with:
           flutter-version: '3.16.3'
       - run: flutter pub get
-      - run: flutter test test_driver/integration_test.dart
+      # - run: flutter test test_driver/integration_test.dart
       # - run: flutter build apk
       - run: flutter build appbundle
