@@ -25,16 +25,31 @@ jobs:
         with:
           flutter-version: '3.16.3'
       - run: flutter pub get
-      # - run: flutter test test_driver/integration_test.dart
+
+     
       
       - run: | 
           echo "" >> ./android/local.properties
           echo flutter.minSdkVersion=21 >> ./android/local.properties
           echo flutter.targetSdkVersion=30 >> ./android/local.properties
           echo flutter.compileSdkVersion=30 >> ./android/local.properties
-          cat /home/runner/work/chemobile/chemobile/android/local.properties
-          pwd
-      
+
+
+      - run: |
+          flutter drive \
+            --dart-define=ELN_USERNAME=complat.user1@eln.edu \
+            --dart-define=ELN_PASSWORD=@complat \
+            --dart-define=ELN_URL=${{TEST_INSTANCE_URL}} \
+            --driver=test_driver/integration_test.dart \
+            --target=integration_test/app_test.dart
+
+      - run: |
+          echo keyPassword=\${{ secrets.KEY_PASSWORD }} > ./android/key.properties
+          echo storePassword=\${{ secrets.STORE_PASSWORD }} >> ./android/key.properties
+          echo keyAlias=\${{ secrets.KEY_ALIAS }} >> ./android/key.properties
+          echo storeFile=upload-keystore.jks >> ./android/key.properties
+          echo "${{ secrets.KEYS_JKS }}" | base64 --decode > ./android/app/upload-keystore.jks
+        
       # - run: flutter build apk
       - run: flutter build appbundle
       
