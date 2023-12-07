@@ -54,7 +54,7 @@ jobs:
           echo storePassword=${{ secrets.STORE_PASSWORD }}" >> ./android/key.properties
           echo keyAlias="${{ secrets.KEY_ALIAS }}" >> ./android/key.properties
           echo storeFile=upload-keystore.jks >> ./android/key.properties
-          echo "${{ secrets.KEYS_JKS }}" | base64 --decode > ./android/app/upload-keystore.jks
+          echo "${{ secrets.KEY_JKS }}" | base64 --decode > ./android/app/upload-keystore.jks
         
       # - run: flutter build apk
       - run: flutter build appbundle
