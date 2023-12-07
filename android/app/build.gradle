@@ -67,14 +67,14 @@ android {
         }
     }
     buildTypes {
-       if (!keystorePropertiesFile.exists()) {
-            println "Signing with key.properties"
-            signingConfig signingConfigs.release
-
-        } else {
-            println "Signing with debug keys"
-            signingConfig signingConfigs.debug
-            
+        release {
+           if (keystorePropertiesFile.exists()) {
+                println "Signing with key.properties"
+                signingConfig signingConfigs.release
+             } else {
+                println "Signing with debug keys"
+                signingConfig signingConfigs.debug
+             }
         }
     }
 }
