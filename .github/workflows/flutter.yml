@@ -30,8 +30,8 @@ jobs:
         run: | 
           echo "" >> ./android/local.properties
           echo flutter.minSdkVersion=21 >> ./android/local.properties
-          echo flutter.targetSdkVersion=30 >> ./android/local.properties
-          echo flutter.compileSdkVersion=30 >> ./android/local.properties
+          echo flutter.targetSdkVersion=33 >> ./android/local.properties
+          echo flutter.compileSdkVersion=33 >> ./android/local.properties
 
       - name: test
         env:
