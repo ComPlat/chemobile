@@ -17,13 +17,13 @@ Future<Uint8List> convertCameraImageToPng(CameraImage image) async {
     }
 
     if (img.height < img.width) {
-      img = imglib.copyRotate(img, 90);
+      img = imglib.copyRotate(img, angle: 90);
     }
 
     imglib.PngEncoder pngEncoder = imglib.PngEncoder();
 
     // Convert to png
-    List<int> png = pngEncoder.encodeImage(img);
+    List<int> png = pngEncoder.encode(img);
 
     return Uint8List.fromList(png);
   } catch (e, stacktrace) {
@@ -37,9 +37,9 @@ Future<Uint8List> convertCameraImageToPng(CameraImage image) async {
 // Color
 imglib.Image _convertBGRA8888(CameraImage image) {
   return imglib.Image.fromBytes(
-    image.width,
-    image.height,
-    image.planes[0].bytes,
+    width: image.width,
+    height: image.height,
+    bytes: image.planes[0].bytes,
     format: imglib.Format.bgra,
   );
 }
@@ -47,7 +47,7 @@ imglib.Image _convertBGRA8888(CameraImage image) {
 // CameraImage YUV420_888 -> PNG -> Image (compresion:0, filter: none)
 // Black
 imglib.Image _convertYUV420(CameraImage image) {
-  var img = imglib.Image(image.width, image.height); // Create Image buffer
+  var img = imglib.Image(width: image.width, height: image.height); // Create Image buffer
 
   Plane plane = image.planes[0];
   const int shift = (0xFF << 24);
@@ -75,7 +75,7 @@ imglib.Image _convertYUV420toImageColor(CameraImage image) {
   final int height = image.height;
   final int uvRowStride = image.planes[1].bytesPerRow;
   final int uvPixelStride = image.planes[1].bytesPerPixel!;
-  var img = imglib.Image(width, height); // Create Image buffer
+  var img = imglib.Image(width: width, height: height); // Create Image buffer
   // Fill image buffer with plane[0] from YUV420_888
   for (int x = 0; x < width; x++) {
     for (int y = 0; y < height; y++) {
