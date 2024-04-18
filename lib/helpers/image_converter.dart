@@ -39,8 +39,8 @@ imglib.Image _convertBGRA8888(CameraImage image) {
   return imglib.Image.fromBytes(
     width: image.width,
     height: image.height,
-    bytes: image.planes[0].bytes,
-    format: imglib.Format.bgra,
+    bytes: image.planes[0].bytes.buffer,
+    format: imglib.Format.uint8,
   );
 }
 
