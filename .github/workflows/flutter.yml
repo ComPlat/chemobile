@@ -16,8 +16,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-java@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '11'
@@ -38,19 +38,20 @@ jobs:
           TEST_INSTANCE_URL: ${{ secrets.TEST_INSTANCE_URL }}
         run: |
           echo "no testing"
-#          flutter packages pub run build_runner build
-#          flutter drive \
-#            --dart-define=ELN_USERNAME=complat.user1@eln.edu \
-#            --dart-define=ELN_PASSWORD=@complat \
-#            --dart-define=ELN_URL=$TEST_INSTANCE_URL
-#            --driver=test_driver/integration_test.dart \
-#            --target=integration_test/app_test.dart
+
+          # flutter packages pub run build_runner build
+          # flutter drive \
+          #   --dart-define=ELN_USERNAME=complat.user1@eln.edu \
+          #   --dart-define=ELN_PASSWORD=@complat \
+          #   --dart-define=ELN_URL=$TEST_INSTANCE_URL
+          #   --driver=test_driver/integration_test.dart \
+          #   --target=integration_test/app_test.dart
 
       - name: set key properties
-        #keyPassword="${{ secrets.KEY_PASSWORD }}"
-        #storePassword="${{ secrets.STORE_PASSWORD }}"
-        #keyAlias="${{ secrets.KEY_ALIAS }}
-        #storeFile=keystore.jks
+        # keyPassword="${{ secrets.KEY_PASSWORD }}"
+        # storePassword="${{ secrets.STORE_PASSWORD }}"
+        # keyAlias="${{ secrets.KEY_ALIAS }}
+        # storeFile=keystore.jks
         run: |
           echo keyPassword="${{ secrets.KEY_PASSWORD }}" > ./android/key.properties
           echo storePassword="${{ secrets.STORE_PASSWORD }}" >> ./android/key.properties
@@ -59,10 +60,11 @@ jobs:
           echo "${{ secrets.KEY_JKS }}" | base64 --decode > ./android/app/keystore.jks
 
       # - run: flutter build apk
+
       - run: flutter build appbundle
 
       - name: Upload artefact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: appbundle
           path: build/app/outputs/bundle/release/app-release.aab
