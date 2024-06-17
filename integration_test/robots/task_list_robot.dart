@@ -10,7 +10,7 @@ class TaskListRobot {
     await tester.pumpAndSettle();
     _validateTaskList();
 
-    await tester.tap(find.widgetWithIcon(FloatingActionButton, Icons.settings_overscan));
+    await tester.tap(find.widgetWithText(BottomNavigationBar, 'Start single scan'));
   }
 
   Future<void> backToMenuScreen() async {
@@ -21,6 +21,6 @@ class TaskListRobot {
   }
 
   void _validateTaskList() async {
-    expect(find.widgetWithText(AppBar, 'Weighted sample tasks'), findsOneWidget);
+    expect(find.widgetWithText(AppBar, 'Finished tasks'), findsOneWidget);
   }
 }

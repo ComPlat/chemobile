@@ -8,11 +8,11 @@ class MenuScreenRobot {
 
   Future<void> openTaskList() async {
     await tester.pumpAndSettle();
-    await tester.tap(find.widgetWithText(ListTile, 'Weighted samples'));
+    await tester.tap(find.widgetWithText(ListTile, 'Unfinished tasks'));
   }
 
   Future<void> openArchive() async {
     await tester.pumpAndSettle();
-    await tester.tap(find.widgetWithText(ListTile, 'Previous Scans'));
+    await tester.tap(find.widgetWithText(ListTile, 'Finished tasks'));
   }
 }

@@ -50,15 +50,13 @@ jobs:
         # keyAlias="${{ secrets.KEY_ALIAS }}
         # storeFile=keystore.jks
         run: |
-          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" > ./android/key.properties
-          echo "storePassword=${{ secrets.STORE_PASSWORD }}" >> ./android/key.properties
-          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> ./android/key.properties
-          echo "storeFile=keystore.jks" >> ./android/key.properties
+          echo keyPassword="${{ secrets.KEY_PASSWORD }}" > ./android/key.properties
+          echo storePassword="${{ secrets.STORE_PASSWORD }}" >> ./android/key.properties
+          echo keyAlias="${{ secrets.KEY_ALIAS }}" >> ./android/key.properties
+          echo storeFile=keystore.jks >> ./android/key.properties
           echo "${{ secrets.KEY_JKS }}" | base64 --decode > ./android/app/keystore.jks
-          echo 
 
-      
-      - run: flutter build apk
+      # - run: flutter build apk
 
       - run: flutter build appbundle
 
