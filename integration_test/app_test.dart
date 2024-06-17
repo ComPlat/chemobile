@@ -37,7 +37,7 @@ void main() {
           userIdentifier: userIdentifier,
           password: password,
           elnUrl: elnUrl,
-          validationUser: 'User1 Complat');
+          validationUser: 'User6 Complat');
 
       devPrint('open task list');
       await menuScreenRobot.openTaskList();
