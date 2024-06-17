@@ -111,3 +111,13 @@ flutter drive \
   --target=integration_test/app_test.dart \
   -d emu
 ```
+
+## Run chrome device
+
+Starts the app on chrome on a fixed port: 
+ 
+
+```
+flutter run -d chrome --web-port=$DEF_PORT  --web-browser-flag "--disable-web-security"
+``` 
+

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:camera/camera.dart';
 import 'package:chemobile/app.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,9 @@ void main() async {
   cameras = await availableCameras();
 
   final storage = await HydratedStorage.build(
-    storageDirectory: await getApplicationDocumentsDirectory(),
+    storageDirectory: kIsWeb
+      ? HydratedStorage.webStorageDirectory
+      : await getApplicationDocumentsDirectory(),
   );
 
   HydratedBloc.storage = storage;
