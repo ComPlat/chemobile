@@ -21,9 +21,9 @@ class _InitScreenState extends State<InitScreen> {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
+        child: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const <Widget>[
+          children: <Widget>[
             Text('Init app...'),
           ],
         ),

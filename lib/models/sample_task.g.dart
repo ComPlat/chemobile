@@ -7,9 +7,9 @@ part of 'sample_task.dart';
 // **************************************************************************
 
 SampleTask _$SampleTaskFromJson(Map<String, dynamic> json) => SampleTask(
-      json['id'] as int?,
-      json['required_scan_results'] as int,
-      json['sample_id'] as int?,
+      (json['id'] as num?)?.toInt(),
+      (json['required_scan_results'] as num).toInt(),
+      (json['sample_id'] as num?)?.toInt(),
       json['short_label'] as String?,
       (json['scan_results'] as List<dynamic>)
           .map((e) => ScanResult.fromJson(e as Map<String, dynamic>))

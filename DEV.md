@@ -19,8 +19,8 @@ samples, guidance on mobile development, and a full API reference.
 
 ```
 flutter.minSdkVersion=21
-flutter.targetSdkVersion=30
-flutter.compileSdkVersion=30
+flutter.targetSdkVersion=33
+flutter.compileSdkVersion=33
 ```
 
 ## Editor Config for Sublime Text
