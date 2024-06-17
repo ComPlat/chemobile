@@ -75,9 +75,9 @@ class _SampleTasksScreenState extends State<SampleTasksScreen> {
   }
 
   Widget doubleScanIcon() {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const [Icon(Icons.science), Icon(Icons.science)],
+      children: [Icon(Icons.science), Icon(Icons.science)],
     );
   }
 

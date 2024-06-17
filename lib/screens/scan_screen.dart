@@ -83,7 +83,7 @@ class _ScanScreenState extends State<ScanScreen> {
     String fallback = getCurrentUser(context).fullName;
     SampleTask? currentTask = _sampleTasksCubit(context).currentSampleTask;
 
-    if (currentTask != null && currentTask!.targetAmountValue != null) {
+    if (currentTask != null && currentTask.targetAmountValue != null) {
       return "Target amount value: ${currentTask.targetAmountValue} ${currentTask.targetAmountUnit}";
     } else {
       return fallback;

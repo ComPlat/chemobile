@@ -11,7 +11,6 @@ import 'package:chemobile/screens/scan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../helpers/dev_print.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({Key? key}) : super(key: key);
@@ -102,9 +101,9 @@ class _MenuScreenState extends State<MenuScreen> {
   }
 
   Widget doubleScanIcon() {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const [Icon(Icons.science), Icon(Icons.science)],
+      children: [Icon(Icons.science), Icon(Icons.science)],
     );
   }
 
