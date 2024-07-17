@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -31,10 +32,13 @@ class _OcrCameraState extends State<OcrCamera> {
   @override
   void initState() {
     super.initState();
-
-    _cameraIndex =
+   // initialize the cameraIndex unless it's a web platform
+    if (!kIsWeb) {
+      _cameraIndex =
         cameras.indexWhere((camera) => camera.lensDirection == widget.initialLensDirection);
+    }
     _startLiveFeed();
+    
   }
 
   @override
@@ -53,6 +57,8 @@ class _OcrCameraState extends State<OcrCamera> {
 
   Future _startLiveFeed() async {
     final camera = cameras[_cameraIndex];
+    // inspect the camera
+    print('Camera: $camera');
     _controller = CameraController(
       camera,
       ResolutionPreset.low,
@@ -61,7 +67,10 @@ class _OcrCameraState extends State<OcrCamera> {
     _controller?.initialize().then((_) async {
       if (!mounted) return;
 
-      await _controller?.lockCaptureOrientation(DeviceOrientation.portraitUp);
+      // if web platform (kIsWeb) then do not set the orientation
+      if (!kIsWeb) {
+	await _controller?.lockCaptureOrientation(DeviceOrientation.portraitUp);
+      }
 
       _controller?.startImageStream(_processCameraImage);
       setState(() {});
@@ -86,8 +95,8 @@ class _OcrCameraState extends State<OcrCamera> {
     final Size imageSize = Size(image.width.toDouble(), image.height.toDouble());
 
     final camera = cameras[_cameraIndex];
-    final imageRotation = InputImageRotationValue.fromRawValue(camera.sensorOrientation) ??
-        InputImageRotation.rotation0deg;
+
+    final imageRotation =  InputImageRotationValue.fromRawValue(camera.sensorOrientation) ?? InputImageRotation.rotation0deg;
 
     final inputImageFormat =
         InputImageFormatValue.fromRawValue(image.format.raw) ?? InputImageFormat.nv21;
