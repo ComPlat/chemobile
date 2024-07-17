@@ -47,6 +47,7 @@ jobs:
           channel: stable
           flutter-version: '3.22.2'
       - run: flutter pub get
+      - run: flutter build apk --release
       
       - name: set local properties
         run: | 
@@ -76,3 +77,11 @@ jobs:
         with:
           name: appbundle
           path: build/app/outputs/bundle/release/app-release.aab
+
+      # Add APk to assets
+      - name: Push to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/flutter-apk/app-release.apk"
+          tag: v1.0.${{ github.run_number }}
+          token: ${{ secrets.TOKEN_SECRET }}
