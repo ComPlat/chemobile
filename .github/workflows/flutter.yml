@@ -78,10 +78,9 @@ jobs:
           name: appbundle
           path: build/app/outputs/bundle/release/app-release.aab
 
-      # Add APk to assets
-      - name: Push to Releases
-        uses: ncipollo/release-action@v1
+      # Upload generated apk to the artifacts.
+      - name: Upload APK
+      - uses: actions/upload-artifact@v4
         with:
-          artifacts: "build/app/outputs/flutter-apk/app-release.apk"
-          tag: v1.0.${{ github.run_number }}
-          token: ${{ secrets.TOKEN_SECRET }}
+          name: release-apk
+          path: build/app/outputs/apk/release/app-release.apk
