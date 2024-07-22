@@ -23,7 +23,7 @@ jobs:
           flutter-version: '3.22.2'
       - run: flutter pub get
       - run: flutter config --enable-web
-      - run: sudo apt-get -y install xvfb xorg gtk2-engines-pixbuf
+        #      - run: sudo apt-get -y install xvfb xorg gtk2-engines-pixbuf
       - name: test
         env:
           TEST_INSTANCE_URL: ${{ secrets.TEST_INSTANCE_URL }}
@@ -35,7 +35,9 @@ jobs:
             --dart-define=ELN_URL=$TEST_INSTANCE_URL \
             --driver=test_driver/integration_test.dart \
             --target=integration_test/app_test.dart \
-            -d web-server --browser-name=chrome --web-browser-flag "--disable-web-security --headless" --headless
+            -d web-server --browser-name=chrome \
+            --web-browser-flag "--disable-web-security --headless --use-fake-ui-for-media-stream --use-fake-device-for-media-stream"
+            --headless
 
   build:
     runs-on: ubuntu-latest
